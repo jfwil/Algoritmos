@@ -1,6 +1,6 @@
 import algoritmos.Fibonacci;
 import javax.swing.JOptionPane;
-    
+
 public class MenuPrincipal {
 
     public static void main(String[] args) {
@@ -62,7 +62,7 @@ public class MenuPrincipal {
                 case 3:
                     calcularFactorial();
                     break;
-                    
+
                 default:
 
                     break;
@@ -106,11 +106,26 @@ public class MenuPrincipal {
                     continue;
                 }
 
+                //secuencia completa
+                StringBuilder secuencia = new StringBuilder();
+                for (int i = 0; i <= n; i++) {
+                    secuencia.append(Fibonacci.fibonacci(i));
+                    if (i < n) {
+                        secuencia.append(", ");
+                    }
+                }
+
+                //obtener el último valor 
                 long resultado = Fibonacci.fibonacci(n);
+
+                //mostrar secuencia y resultado final
+                String mensaje = "Secuencia Fibonacci hasta " + n + ":\n"
+                        + secuencia.toString() + "\n\n"
+                        + "Fibonacci(" + n + ") = " + resultado;
 
                 JOptionPane.showMessageDialog(
                         null,
-                        "Fibonacci(" + n + ") = " + resultado,
+                        mensaje,
                         "Resultado",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -162,6 +177,16 @@ public class MenuPrincipal {
 
             try {
                 int n = Integer.parseInt(input.trim());
+
+                if (n % 2 == 0) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Ingrese un numero impar.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    continue;
+                }
 
                 if (n < 0) {
                     JOptionPane.showMessageDialog(
@@ -333,7 +358,7 @@ public class MenuPrincipal {
             }
         }
     }
-    
+
     private static void calcularFactorial() {
         while (true) {
             String input = JOptionPane.showInputDialog(
@@ -403,5 +428,4 @@ public class MenuPrincipal {
             }
         }
     }
-
 }
